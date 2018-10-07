@@ -3,9 +3,9 @@ import Courses from '../views/Courses';
 import Detail from '../views/Detail';
 
 const indexRoutes = [
-  { path: "/login", component: Login },
   { path: "/courses", component: Courses },
-  { path: "/detail", component: Detail },
+  { path: "/login", component: Login },
+  { path: "/detail/:id", component: Detail },
   { path: "**", component: Login },
 ];
 
