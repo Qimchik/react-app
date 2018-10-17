@@ -1,6 +1,12 @@
+### `node server`
+
+To start server
+
 ### `npm start`
 
 Application will open in ``http://localhost:3000``
+``login: 1@mail.com
+pass: 123``
 
 ### `npm test`
 

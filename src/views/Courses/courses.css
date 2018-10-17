@@ -4,8 +4,7 @@
   margin: 0 40px;
 }
 
-table {
-  width: calc(100% - 80px);
-  padding: 0 10px;
-  margin: 20px auto;
+.table {
+  margin: 50px 20px;
+  height: 700px;
 }

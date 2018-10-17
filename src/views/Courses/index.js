@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
+import { Column, Table, AutoSizer } from "react-virtualized";
 import TextField from '@material-ui/core/TextField';
 import { REQUEST_COURSES_LIST, REQUEST_COURSE_REMOVE } from '../../store/actions';
 import { history } from '../../store/config';
+import 'react-virtualized/styles.css'
 import './courses.css';
 
 class Courses extends Component {
@@ -47,34 +44,56 @@ class Courses extends Component {
           </div>
           <button onClick={() => history.push(`/detail/new`)} className="btn btn-primary">Add course</button>
         </div>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>name</TableCell>
-              <TableCell>time</TableCell>
-              <TableCell>descrition</TableCell>
-              <TableCell>date</TableCell>
-              <TableCell>actions</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {this.props.courses && this.props.courses.map(row => {
-              return (
-                <TableRow key={row.id}>
-                  <TableCell>{row.name}</TableCell>
-                  <TableCell>{row.time}</TableCell>
-                  <TableCell>{row.descrition}</TableCell>
-                  <TableCell>{row.date}</TableCell>
-                  <TableCell>
-                    <button onClick={() => history.push(`/detail/${row.id}`)} className="btn btn-primary">Edit</button>
-                    <button onClick={() => this.props.REQUEST_COURSE_REMOVE(row.id, this.props.token)} className="btn btn-danger">Delete</button>
-                  </TableCell>
-                </TableRow>
-              );
-            })}
-          </TableBody>
-        </Table>
-
+        <div className='table'>
+          <AutoSizer>
+            {({width}) => (
+              <Table
+                width={width - 40}
+                height={700}
+                headerHeight={20}
+                rowHeight={30}
+                rowCount={this.props.courses.length}
+                rowGetter={({ index }) => this.props.courses[index]}
+              >
+                <Column
+                  dataKey="id"
+                  label="#"
+                  width={70}
+                />
+                <Column
+                  dataKey="name"
+                  label="Name"
+                  width={300}
+                />
+                <Column
+                  dataKey="time"
+                  label="Time"
+                  width={250}
+                />
+                <Column
+                  dataKey="descrition"
+                  label="Descrition"
+                  width={350}
+                />
+                <Column
+                  dataKey="date"
+                  label="Date"
+                  width={300}
+                />
+                <Column
+                  label="Actions"
+                  width={500}
+                  cellRenderer={({rowData}) => (
+                    <div>
+                      <button onClick={() => history.push(`/detail/${rowData.id}`)} className="btn btn-primary">Edit</button>
+                      <button onClick={() => this.props.REQUEST_COURSE_REMOVE(rowData.id, this.props.token)} className="btn btn-danger">Delete</button>
+                    </div>
+                  )}
+                />
+              </Table>
+            )}
+          </AutoSizer>
+        </div>
       </div>
     );
   }

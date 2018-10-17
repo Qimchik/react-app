@@ -8,29 +8,34 @@ app.use(function(req, res, next) {
   next();
 });
 
-let courses = [
+const temp = [
   {
-    id: '111',
     name: 'JS course',
     time: '2 hour 28 min',
     descrition: 'bla-bla-bla',
     date: '1.12.2018'
   },
   {
-    id: '112',
     name: 'HTML course',
     time: '1 hour 10 min',
     descrition: 'bla-bla-bla',
     date: '2.12.2018'
   },
   {
-    id: '113',
     name: 'CSS course',
     time: '0 hour 20 min',
     descrition: 'bla-bla-bla',
     date: '3.11.2018'
   },
 ]
+
+let courses = (() => {
+  const courses = [];
+  for (let i = 0; i < 5000; i++){
+    courses.push({...temp[i % 3], id: ''+i});
+  }
+  return courses;
+})()
 
 const token = 'security'
 

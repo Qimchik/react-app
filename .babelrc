@@ -1,0 +1,18 @@
+{
+  "presets": [
+    [
+      "env",
+      {
+        "targets": {
+          "browsers": [
+            "last 2 versions",
+            "IE 11"
+          ]
+        }
+      }
+    ],
+    "react",
+    "stage-2"
+  ],
+  "plugins": ["transform-es2015-template-literals"]
+}
