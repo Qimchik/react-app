@@ -1,5 +1,6 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const weblog = require('webpack-log');
@@ -78,6 +79,14 @@ module.exports = () => {
       cleanWebpackPlugin,
       new webpack.NamedModulesPlugin(),
       new webpack.HotModuleReplacementPlugin(),
+      new UglifyJSPlugin({
+        uglifyOptions: {
+          sourceMap: true,
+          output: {
+            comments: false,
+          }
+        }
+      }),
       new HtmlWebPackPlugin({
         template: './src/index.html'
       }),
