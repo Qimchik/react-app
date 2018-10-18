@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { REQUEST_LOGIN } from '../../store/actions';
 import './login.css';
 
-class Login extends Component {
+export class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {

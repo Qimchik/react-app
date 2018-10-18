@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './footer.css';
 
-class Footer extends Component {
+export class Footer extends Component {
   render() {
     return (
       <div className="app-footer">

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { LOGOUT } from '../../store/actions';
 import './header.css';
 
-class Header extends Component {
+export class Header extends Component {
   render() {
     return (
       <div className="app-header">
